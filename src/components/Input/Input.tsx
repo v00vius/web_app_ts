@@ -32,7 +32,7 @@ function Input({
         // onChange - функция, которая срабатывает, когда пользователь что-то вводит в инпут
         onChange={onChange}
       />
-      
+
       {!!error && <ErrorContainer>{error}</ErrorContainer>}
     </InputWrapper>
   );

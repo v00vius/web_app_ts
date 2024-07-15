@@ -11,10 +11,13 @@ import { LoginFormContainer, Title, InputsContainer } from "./styles";
 
 function LoginForm() {
   const validator = Yup.object().shape({
-    [LOGIN_FORM_NAMES.EMAIL]: Yup.string().required("The field is mandatory"),
-    [LOGIN_FORM_NAMES.PASSWORD]: Yup.string().required(
-      "The field is mandatory"
-    ),
+    [LOGIN_FORM_NAMES.EMAIL]: Yup.string()
+      .required("The field is mandatory")
+      .email("Must be email format"),
+    [LOGIN_FORM_NAMES.PASSWORD]: Yup.string()
+      .required("The field is mandatory")
+      .min(5, "The password too short")
+      .max(15, "The password too long"),
   });
 
   const formik = useFormik({
@@ -24,6 +27,8 @@ function LoginForm() {
     },
 
     validationSchema: validator,
+    validateOnMount: true,
+    validateOnChange: false,
 
     onSubmit: (values, helpers) => {
       console.log("Submitted.");
@@ -44,7 +49,7 @@ function LoginForm() {
         <Input
           id="email-id"
           name={LOGIN_FORM_NAMES.EMAIL}
-          type="email"
+          type="text"
           placeholder="Enter your email"
           label="Email"
           value={formik.values.email}
