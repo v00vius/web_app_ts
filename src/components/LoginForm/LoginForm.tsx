@@ -68,7 +68,7 @@ function LoginForm() {
           error={formik.errors[LOGIN_FORM_NAMES.PASSWORD]}
         />
       </InputsContainer>
-      <Button name="Login" type="submit" />
+      <Button disabled={formik.isSubmitting} name="Login" type="submit" />
     </LoginFormContainer>
   );
 }
