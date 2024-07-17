@@ -17,7 +17,8 @@ function LoginForm() {
     [LOGIN_FORM_NAMES.PASSWORD]: Yup.string()
       .required("The field is mandatory")
       .min(5, "The password too short")
-      .max(15, "The password too long"),
+      .max(15, "The password too long")
+      .uppercase("Must be uppercase"),
   });
 
   const formik = useFormik({
